@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package Controller;
 
 import DAO.AccountDAO;
 import DAO.CategoryDAO;
@@ -28,7 +28,7 @@ import java.util.logging.Logger;
  *
  * @author toden
  */
-public class AddProduct extends HttpServlet {
+public class updateProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +47,10 @@ public class AddProduct extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddProduct</title>");            
+            out.println("<title>Servlet updateProduct</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddProduct at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet updateProduct at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,6 +65,12 @@ public class AddProduct extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
     DAO Pdao;
     DAO Cdao;
     DAO Adao;
@@ -73,12 +79,6 @@ public class AddProduct extends HttpServlet {
         Cdao = new CategoryDAO();
         Adao = new AccountDAO();
     }
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -92,19 +92,15 @@ public class AddProduct extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         HttpSession session = request.getSession();
+        int pid = Integer.parseInt(request.getParameter("pid"));
         String name = request.getParameter("Pname");
         double price = Double.parseDouble(request.getParameter("Pprice"));
-        int cid = Integer.parseInt(request.getParameter("Pca"));
-        String img = request.getParameter("Pimg");
-        String descriptione = request.getParameter("description");
-        List<Product> pl = Pdao.addProduct(name, price, cid, img,descriptione);
-        session.setAttribute("p", pl);
-        Account acc = (Account)session.getAttribute("Account");
-        if(acc!=null&&acc.getRoleId()!=0&&acc.getAccountId()!=0){
-           request.getRequestDispatcher("manager/productList.jsp").forward(request, response);
-        }
-        else{
-        response.sendRedirect("ProductList");}
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        String img = request.getParameter("img");
+        String description = request.getParameter("description");
+        List<Product> acc = Pdao.updateProduct(name, price, cid, img, pid,description);
+        session.setAttribute("p", acc);
+        request.getRequestDispatcher("manager/productList.jsp").forward(request, response);
     }
 
     /**
@@ -116,9 +112,5 @@ public class AddProduct extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    private void SimpleDateFormat(String ddMMyyyy) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 }
