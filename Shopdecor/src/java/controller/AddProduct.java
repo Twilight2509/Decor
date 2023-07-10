@@ -4,23 +4,33 @@
  */
 package controller;
 
-
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletContext;
+import DAO.AccountDAO;
+import DAO.CategoryDAO;
+import DAO.DAO;
+import DAO.ProductDAO;
+import Model.Account;
+import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @author AD
+ * @author toden
  */
-public class Login extends HttpServlet {
+public class AddProduct extends HttpServlet {
 
-     /**
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -34,19 +44,15 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-//Get data from HTML form  
-            String u = request.getParameter("user");
-            String p = request.getParameter("pass");
-            //Get data from XML
-            ServletConfig sc = getServletConfig();
-            String user=sc.getInitParameter("username");
-            String pass = sc.getInitParameter("password");
-            if (user.equals(u)&&pass.equals(p)) {
-                response.sendRedirect("Welcome");
-            } else {
-                response.sendRedirect("Login.html");
-                //request.getRequestDispatcher("login.html").include(request, response);
-            }
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AddProduct</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AddProduct at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -59,6 +65,14 @@ public class Login extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    DAO Pdao;
+    DAO Cdao;
+    DAO Adao;
+    public void init(){
+        Pdao = new ProductDAO();
+        Cdao = new CategoryDAO();
+        Adao = new AccountDAO();
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -76,7 +90,21 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        HttpSession session = request.getSession();
+        String name = request.getParameter("Pname");
+        double price = Double.parseDouble(request.getParameter("Pprice"));
+        int cid = Integer.parseInt(request.getParameter("Pca"));
+        String img = request.getParameter("Pimg");
+        String descriptione = request.getParameter("description");
+        List<Product> pl = Pdao.addProduct(name, price, cid, img,descriptione);
+        session.setAttribute("p", pl);
+        Account acc = (Account)session.getAttribute("Account");
+        if(acc!=null&&acc.getRoleId()!=0&&acc.getAccountId()!=0){
+           request.getRequestDispatcher("manager/productList.jsp").forward(request, response);
+        }
+        else{
+        response.sendRedirect("ProductList");}
     }
 
     /**
@@ -89,5 +117,8 @@ public class Login extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private void SimpleDateFormat(String ddMMyyyy) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }

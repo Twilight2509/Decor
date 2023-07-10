@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="AnhTN_HE171615_Lab1" default="default" basedir=".">
-    <description>Builds, tests, and runs the project AnhTN_HE171615_Lab1.</description>
+<project name="ShopDecor" default="default" basedir=".">
+    <description>Builds, tests, and runs the project ShopDecor.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 

@@ -4,42 +4,9 @@
         <welcome-file>Login.html</welcome-file>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
-    <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>controller.Login</servlet-class>
-        <init-param>
-            <param-name>username</param-name>
-            <param-value>abc</param-value>
-        </init-param>
-        <init-param>
-            <param-name>password</param-name>
-            <param-value>12345</param-value>
-        </init-param>
-    </servlet>
-    <servlet>
-        <servlet-name>Welcome</servlet-name>
-        <servlet-class>controller.Welcome</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CalHTML</servlet-name>
-        <servlet-class>controller.CalHTML</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Welcome</servlet-name>
-        <url-pattern>/Welcome</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CalHTML</servlet-name>
-        <url-pattern>/CalHTML</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
 </web-app>
-
