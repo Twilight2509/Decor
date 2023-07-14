@@ -101,6 +101,11 @@ public class Account {
     public void setPassword(String Password) {
         this.Password = Password;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" + "AccountId=" + AccountId + ", AccountName=" + AccountName + ", Password=" + Password + ", customer_name=" + customer_name + ", phone=" + phone + ", address=" + address + ", email=" + email + ", roleId=" + roleId + '}';
+    }
     
     
 }

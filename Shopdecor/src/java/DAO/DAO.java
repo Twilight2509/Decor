@@ -8,6 +8,7 @@ import DBContext.DBContext;
 import Model.Account;
 import Model.Cart;
 import Model.Category;
+import Model.Order;
 import Model.Product;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -19,110 +20,124 @@ import java.util.List;
  * @author toden
  */
 public class DAO {
+
     protected Connection con;
-    protected String status="";
-    public DAO(){
-        try{
+    protected String status = "";
+
+    public DAO() {
+        try {
             con = new DBContext().getConnection();
         } catch (Exception e) {
-            status = "Error Connection "+e.getMessage();
+            status = "Error Connection " + e.getMessage();
         }
     }
-    
-    public List<Product> getAllProduct(){
+
+    public List<Product> getAllProduct() {
         return null;
     }
-    public List<Product> searchByName(String xName){
+
+    public List<Product> searchByName(String xName) {
         return null;
     }
-    public List<Product> DelOneProduct(int id){
+
+    public List<Product> DelOneProduct(int id) {
         return null;
     }
-    
-    public Product getOnePro(int id){
+
+    public Product getOnePro(int id) {
         return null;
     }
-    
-    public List<Product> addProduct(String name, double price, int cid, String img, String dissription){
+
+    public List<Product> addProduct(String name, double price, int cid, String img, String dissription) {
         return null;
     }
 
     public List<Category> getAllCate() {
-       return null;
-    }
-    
-    public List<Account> getAllAccount(){
         return null;
     }
-    
-    public int cusAccountExist(String email, String p){
+
+    public List<Account> getAllAccount() {
+        return null;
+    }
+
+    public int cusAccountExist(String email, String p) {
         return 0;
     }
-    
-    
-    public Account getOneAcc(int id){
-       return null;
-    }
-    
-    public Account findAccByName(String name, String p){
+
+    public Account getOneAcc(int id) {
         return null;
     }
-    
-    public List<Product> updateProduct(String name, double price, int cid, String img, int pid,  String discription){
+
+    public Account findAccByName(String name, String p) {
         return null;
     }
-    
-    public List<Product> getProductByCate(int id){
+
+    public List<Product> updateProduct(String name, double price, int cid, String img, int pid, String discription) {
         return null;
     }
-    
-    public List<Cart> getCartByAccount(int id){
-         return null;
-    }
-            
-    public List<Cart> addCart(int aid, int pid){
+
+    public List<Product> getProductByCate(int id) {
         return null;
     }
-    
-    public List<Cart> DelOneCart(int aid, int pid){
+
+    public List<Cart> getCartByAccount(int id) {
         return null;
     }
-    
-    public List<Cart> DelCartByAccountId(int aid){
+
+    public List<Cart> addCart(int aid, int pid) {
         return null;
     }
-    
-    public int getNewestOrderId(){
+
+    public List<Cart> DelOneCart(int aid, int pid) {
+        return null;
+    }
+
+    public List<Cart> DelCartByAccountId(int aid) {
+        return null;
+    }
+
+    public int getNewestOrderId() {
         return 0;
     }
-    
-    public boolean addOrderDetail(List<Cart> carts){
+
+    public boolean addOrderDetail(List<Cart> carts) {
         return false;
     }
-    
-    public boolean addOrder(int aid, List<Cart> carts){
+
+    public boolean addOrder(int aid, List<Cart> carts) {
         return false;
     }
-    
-    public boolean addOrder(int aid, Cart c){
+
+    public boolean addOrder(int aid, Cart c) {
         return false;
     }
-    
-    public boolean addOrderDetail(Cart c){
+
+    public boolean addOrderDetail(Cart c) {
         return false;
     }
-    public Account findAccByEmail(String email){
+
+    public Account findAccByEmail(String email) {
         return null;
     }
-            
-    public Account addAcc(String account, String password, String customer, String phone, String address, String email){
+
+    public Account addAcc(String account, String password, String customer, String phone, String address, String email) {
         return null;
     }
-    
-    public List<Cart> updateCart(int aid, int pid){
+
+    public List<Cart> updateCart(int aid, int pid) {
         return null;
     }
-    public void addCategory(String name){
-        
+
+    public void addCategory(String name) {
+
     }
+
+    public List<Order> getListOrder() {
+        return null;
+    }
+
+    public Account findAccByID(String ID) {
+        return null;
+    }
+
 }

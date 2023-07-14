@@ -1,9 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="navbar navbar-expand-lg navbar-toggler bg-indigo" style="height: 100px">
     <div class="container-fluid text-black">
-        <a class="navbar-brand text-uppercase outline-success" href="ProductList">
-            <img src="\WORKSPACE\DecorShop\web\images\logo.png" alt="H" style="width: 30px;height: 30px;">
-        </a>
+        <a class="navbar-brand text-uppercase outline-success" href="ProductList">Decor Shop</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

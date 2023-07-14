@@ -45,6 +45,31 @@ public class AccountDAO extends DAO {
         }
         return null;
     }
+    @Override
+    public Account findAccByID(String ID){
+        String sql = "select * from Account where account_id = ?";
+        Account acc = new Account();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,ID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String accName = rs.getString(2);
+                String password = rs.getString(3);
+                String cusName = rs.getString(4);
+                String phone = rs.getString(5);
+                String address = rs.getString(6);
+                String email = rs.getString(7);
+                int roleId = rs.getInt(8);
+                acc = new Account(id, accName, password, cusName, phone, address, email, roleId);
+                return acc;
+            }
+        } catch (Exception e) {
+            status = "Error at findAccByEmail " + e.getMessage();
+        }
+        return null;
+    }
     
     @Override
     public Account addAcc(String account, String password, String customer, String phone, String address, String email){
@@ -163,5 +188,9 @@ public class AccountDAO extends DAO {
             status = "Error at read Category " + e.getMessage();
         }
         return acc;
+    }
+    public static void main(String[] args) {
+        DAO a = new AccountDAO();
+        System.out.println(a.findAccByID("5"));
     }
 }

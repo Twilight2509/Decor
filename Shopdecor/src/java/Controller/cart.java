@@ -93,8 +93,8 @@ public class cart extends HttpServlet {
             List<Cart> carts = (List<Cart>) session.getAttribute("Cart");
             for (Cart c : carts) {
                 if (c.getAccountId() == aid && c.getProductId() == pid) {
-                    OrderDAO.addOrder(aid, c);
-                    OrderDAO.addOrderDetail(c);
+                    boolean a = OrderDAO.addOrder(aid, c);
+                    boolean vb = OrderDAO.addOrderDetail(c);
                 }
             }
             carts = CartDAO.DelOneCart(aid, pid);

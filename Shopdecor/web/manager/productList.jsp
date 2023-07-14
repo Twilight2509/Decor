@@ -10,13 +10,16 @@
         <%@include file="../Component/header.jsp" %>
     </head>
     <body>
-         <%@include file="../Component/navbar.jsp" %>
+        <%@include file="../Component/navbar.jsp" %>
         <div class="container" style="padding: 50px;">
             <h4>Product List</h4>
             <form method="post" action="ProductList">
                 <button type="submit" name="btnAdd" class="btn btn-primary">Add</button>
             </form>
-             <form id="cateForm" action="ProductList" method="get">
+            <a href="manager/OrderList">
+                <button type="button" style="margin-top: 10px;"  class="btn btn-primary">Manager Order</button>
+            </a>
+            <form id="cateForm" action="ProductList" method="get">
                 <select name="cateSelect" id="cateSelect" style="width: 100px; margin: 2px;" class="form-select" aria-label="Default select example">
                     <option>Tất cả</option>
                     <c:forEach items="${sessionScope.cl}" var="cl">
@@ -43,15 +46,15 @@
                 <%@include file="../Component/pagination.jsp" %>
             </div>
         </div>
-            <%@include file="../Component/footer.jsp" %>
-                <script>
+        <%@include file="../Component/footer.jsp" %>
+        <script>
             $(document).ready(function () {
-                $('#cateSelect').change(function(){
+                $('#cateSelect').change(function () {
                     $('#cateForm').submit();
                 });
             });
 
-           
+
         </script>
     </body>
 </html>
